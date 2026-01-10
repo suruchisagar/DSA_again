@@ -8,7 +8,6 @@ public class StackArrays {
         stack= new int[capacity];
         top=-1;
     }
-
     public StackArrays(){
         this(1000);
     }
