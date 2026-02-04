@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class buildTree {
     static class Node{
         int data;
@@ -24,6 +26,65 @@ public class buildTree {
 
             return newnode;
         }
+
+        public static void preorder(Node root){
+            if(root== null){ 
+                return;
+            }
+            System.out.println(root.data+ " ");
+            preorder(root.left);
+            preorder(root.right);
+        }
+
+        public static void inorder(Node root){
+            if(root ==null){
+                return ;
+            }
+            inorder(root.left);
+            System.out.println(root.data);
+            inorder(root.right);
+            
+        }
+
+        public static void postorder(Node root){
+            if(root ==null){
+                return ;
+            }
+            postorder(root.left);
+            postorder(root.right);
+            System.out.println(root.data);
+            
+        }
+
+        public static void levelorder(Node root){
+            if(root== null){
+                return;
+            }
+
+            Queue<Node> q = new LinkedList<>();
+            q.add(root);
+            q.add(null);
+
+        while(!q.isEmpty()){
+            Node current = q.remove();
+            if(current == null){
+                System.out.println();
+                if(q.isEmpty()){
+                    break;
+                }else{
+                    q.add(null);
+                }
+            }else{
+                System.out.print(current.data+ " ");
+                if(current.left != null){
+                    q.add(current.left);
+                }
+                if(current.right != null){
+                    q.add(current.right);
+                }
+            }
+        }
+        }
     }
 
     public static void main(String[] args) {
@@ -31,5 +92,11 @@ public class buildTree {
         BinaryTree tree= new BinaryTree();
         Node root = tree.buildtree(nodes);
         System.out.println(root.data);
+        tree.preorder(root);
+        System.out.println();
+        tree.inorder(root);
+        System.out.println();
+        tree.levelorder(root);
+
     }
 }
